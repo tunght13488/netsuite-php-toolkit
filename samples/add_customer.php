@@ -10,12 +10,12 @@ $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
 $config = array(
-    'nsendpoint' => getenv('ENDPOINT'),
-    'nshost' => getenv('HOST'),
-    'nsemail' => getenv('EMAIL'),
-    'nspassword' => getenv('PASSWORD'),
-    'nsrole' => getenv('ROLE'),
-    'nsaccount' => getenv('ACCOUNT'),
+    'endpoint' => getenv('ENDPOINT'),
+    'host' => getenv('HOST'),
+    'email' => getenv('EMAIL'),
+    'password' => getenv('PASSWORD'),
+    'role' => getenv('ROLE'),
+    'account' => getenv('ACCOUNT'),
 );
 
 $service = new NetSuiteService($config);

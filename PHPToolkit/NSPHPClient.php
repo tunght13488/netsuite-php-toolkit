@@ -167,23 +167,23 @@ class NSPHPClient
     protected function __construct($config = array(), $wsdl = null, $options = array())
     {
         $defaultConfig = array(
-            'nsendpoint' => "2015_1",
-            'nshost' => "https://webservices.netsuite.com",
-            'nsemail' => "jDoe@netsuite.com",
-            'nspassword' => "mySecretPwd",
-            'nsrole' => "3",
-            'nsaccount' => "MYACCT1",
+            'endpoint' => "2015_1",
+            'host' => "https://webservices.netsuite.com",
+            'email' => "jDoe@netsuite.com",
+            'password' => "mySecretPwd",
+            'role' => "3",
+            'account' => "MYACCT1",
             'debuginfo' => null,
         );
 
         $config = array_merge($defaultConfig, $config);
 
-        $nsendpoint = $config['nsendpoint'];
-        $nshost = $config['nshost'];
-        $nsemail = $config['nsemail'];
-        $nspassword = $config['nspassword'];
-        $nsrole = $config['nsrole'];
-        $nsaccount = $config['nsaccount'];
+        $nsendpoint = $config['endpoint'];
+        $nshost = $config['host'];
+        $nsemail = $config['email'];
+        $nspassword = $config['password'];
+        $nsrole = $config['role'];
+        $nsaccount = $config['account'];
         $debuginfo = $config['debuginfo'];
 
         if (!isset($wsdl)) {
