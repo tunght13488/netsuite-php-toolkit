@@ -1,8 +1,24 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\Customer;
+use NetSuite\WebServices\NetSuiteService;
+
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+$dotenv->load();
+
+$config = array(
+    'nsendpoint' => getenv('ENDPOINT'),
+    'nshost' => getenv('HOST'),
+    'nsemail' => getenv('EMAIL'),
+    'nspassword' => getenv('PASSWORD'),
+    'nsrole' => getenv('ROLE'),
+    'nsaccount' => getenv('ACCOUNT'),
+);
+
+$service = new NetSuiteService($config);
 
 $customer = new Customer();
 $customer->lastName = "Doe";
@@ -20,6 +36,3 @@ if (!$addResponse->writeResponse->status->isSuccess) {
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
-
-?> 
-

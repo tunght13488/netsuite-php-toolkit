@@ -4,7 +4,7 @@
  * Copyright © 2015, NetSuite, Inc.
  */
 
-require_once "NSPHPClient.php";
+namespace NetSuite\WebServices;
 
 if (!class_exists("RecordType")) {
     /**
@@ -154936,9 +154936,12 @@ if (!class_exists("NetSuiteService")) {
 	 * @param string $wsdl WSDL location for this service
 	 * @param array $options Options for the SoapClient
 	 */
-        public function __construct($wsdl = null, $options = array())
+        public function __construct($config = array(), $wsdl = null, $options = array())
         {
-            parent::__construct($wsdl, $options);
+            foreach ($this->classmap as $key => $value) {
+                $this->classmap[$key] = __NAMESPACE__ . '\\' . $value;
+            }
+            parent::__construct($config, $wsdl, $options);
         }
 
         /**

@@ -1,0 +1,9 @@
+# Created by https://www.gitignore.io/api/composer
+
+### Composer ###
+vendor/
+composer.lock
+composer.phar
+
+### DotEnv ###
+.env

@@ -1,0 +1,21 @@
+{
+    "name": "tunght13488/netsuite-php-toolkit",
+    "description": "NetSuite PHP Toolkit",
+    "keywords": ["netsuite"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [],
+    "require": {
+        "php": ">=5.3",
+        "ext-soap": "*",
+        "ext-SimpleXML": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "PHPToolkit/"
+        ]
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^2.1"
+    }
+}

@@ -1,6 +1,11 @@
 <?php
 
-require "NSconfig.php";
+namespace NetSuite\WebServices;
+
+use Exception;
+use SimpleXMLElement;
+use SoapClient;
+use SoapHeader;
 
 function arrayValuesAreEmpty($array)
 {
@@ -159,11 +164,27 @@ class NSPHPClient
 
     private $userequest = true;
 
-    protected function __construct($wsdl = null, $options = array())
+    protected function __construct($config = array(), $wsdl = null, $options = array())
     {
-        global $nshost, $nsendpoint;
-        global $nsaccount, $nsemail, $nsrole, $nspassword;
-        global $debuginfo;
+        $defaultConfig = array(
+            'nsendpoint' => "2015_1",
+            'nshost' => "https://webservices.netsuite.com",
+            'nsemail' => "jDoe@netsuite.com",
+            'nspassword' => "mySecretPwd",
+            'nsrole' => "3",
+            'nsaccount' => "MYACCT1",
+            'debuginfo' => null,
+        );
+
+        $config = array_merge($defaultConfig, $config);
+
+        $nsendpoint = $config['nsendpoint'];
+        $nshost = $config['nshost'];
+        $nsemail = $config['nsemail'];
+        $nspassword = $config['nspassword'];
+        $nsrole = $config['nsrole'];
+        $nsaccount = $config['nsaccount'];
+        $debuginfo = $config['debuginfo'];
 
         if (!isset($wsdl)) {
             if (!isset($nshost)) {
@@ -334,5 +355,3 @@ class NSPHPClient
     }
 
 }
-
-?>
