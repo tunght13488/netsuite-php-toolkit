@@ -15,9 +15,9 @@ if (!$getResponse->readResponse->status->isSuccess) {
 } else {
     $customer = $getResponse->readResponse->record;
     echo "GET SUCCESS, customer:";
-    echo "\nCompany name: ". $customer->companyName;
-    echo "\nInternal Id: ". $customer->internalId;
-    echo "\nEmail: ". $customer->email . "\n";
+    echo "\nCompany name: " . $customer->companyName;
+    echo "\nInternal Id: " . $customer->internalId;
+    echo "\nEmail: " . $customer->email . "\n";
 
     $addressBookListArray = $customer->addressbookList->addressbook;
     if (is_array($addressBookListArray)) {

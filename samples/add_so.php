@@ -14,17 +14,17 @@ $svr->fieldDescription->
 */
 
 $priceFields = array(
-    'recordType'  => RecordType::salesOrder,
-    'sublist'    => 'itemList',
-    'field'    => 'price',
-    'filterByValueList'    => array(
-        'filterBy'    => array(
+    'recordType' => RecordType::salesOrder,
+    'sublist' => 'itemList',
+    'field' => 'price',
+    'filterByValueList' => array(
+        'filterBy' => array(
             array(
-            'field'    => 'item',
-            'sublist'    => 'itemList',
-            'internalId'        => '458',
-        )
+                'field' => 'item',
+                'sublist' => 'itemList',
+                'internalId' => '458',
             )
+        )
     )
 );
 
@@ -33,7 +33,7 @@ setFields($svr->fieldDescription, $priceFields);
 $gsv = $service->getSelectValue($svr);
 
 $id = null;
-foreach($gsv->getSelectValueResult->baseRefList->baseRef as $pricelevel) {
+foreach ($gsv->getSelectValueResult->baseRefList->baseRef as $pricelevel) {
     if ($pricelevel->name == 'Custom') {
         $id = $pricelevel->internalId;
         break;

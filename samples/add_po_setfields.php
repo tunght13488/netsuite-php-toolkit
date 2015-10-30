@@ -4,12 +4,12 @@ require_once '../PHPToolkit/NetSuiteService.php';
 
 $service = new NetSuiteService();
 
-$purchaseOrderFields = array (
-    'entity' 	=> array ('internalId' => 1),
-    'itemList' 	=> array (
-        'item' => array (
-            array(	'item' => array('internalId' => 458),
-                'quantity' => 5)) ,
+$purchaseOrderFields = array(
+    'entity' => array('internalId' => 1),
+    'itemList' => array(
+        'item' => array(
+            array('item' => array('internalId' => 458),
+                'quantity' => 5)),
         'replaceAll' => true
     )
 );

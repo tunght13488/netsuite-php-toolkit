@@ -9,10 +9,10 @@ $customer1 = new Customer();
 
 $name = 'customer_php_async_1';
 
-$customerFields1 = array (
-    'entityId' 		=> $name,
-    'companyName'	=> $name,
-    'externalId'	=> $name
+$customerFields1 = array(
+    'entityId' => $name,
+    'companyName' => $name,
+    'externalId' => $name
 );
 
 setFields($customer1, $customerFields1);
@@ -21,10 +21,10 @@ $customer2 = new Customer();
 
 $name2 = 'customer_php_async_2';
 
-$customerFields2 = array (
-    'entityId' 		=> $name2,
-    'companyName'	=> $name2,
-    'externalId'	=> $name2
+$customerFields2 = array(
+    'entityId' => $name2,
+    'companyName' => $name2,
+    'externalId' => $name2
 );
 
 setFields($customer2, $customerFields2);
@@ -51,5 +51,5 @@ $getasyncreq->pageIndex = "1";
 
 $result = $service->getAsyncResult($getasyncreq);
 
-?> 
+?>
 

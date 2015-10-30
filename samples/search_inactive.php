@@ -7,7 +7,7 @@ $service = new NetSuiteService();
 $service->setSearchPreferences(false, 20);
 
 $itemSearch = new ItemSearchBasic();
-$searchItems = array( 'isInactive' => array('searchValue' => 'TRUE'));
+$searchItems = array('isInactive' => array('searchValue' => 'TRUE'));
 setFields($itemSearch, $searchItems);
 
 $request = new SearchRequest();

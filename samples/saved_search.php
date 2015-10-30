@@ -17,7 +17,7 @@ if (!$searchResponse->searchResult->status->isSuccess) {
 } else {
     echo "SEARCH SUCCESS, records found: " . $searchResponse->searchResult->totalRecords . "\n";
     $records = $searchResponse->searchResult->searchRowList->searchRow;
-    foreach ($records as $record)  {
+    foreach ($records as $record) {
         echo "Name: " . $record->basic->name->searchValue . "\n";
     }
 

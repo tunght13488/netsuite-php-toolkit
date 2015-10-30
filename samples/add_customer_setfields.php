@@ -5,12 +5,12 @@ require_once '../PHPToolkit/NetSuiteService.php';
 $service = new NetSuiteService();
 
 $customer = new Customer();
-$customerFields = array (
-    'firstName'			=> "Joe",
-    'lastName'			=> "Doe",
-    'companyName'		=> "ABC company",
-    'phone'		=> "123456789",
-    'email'				=> "joe.doe@abc.com",
+$customerFields = array(
+    'firstName' => "Joe",
+    'lastName' => "Doe",
+    'companyName' => "ABC company",
+    'phone' => "123456789",
+    'email' => "joe.doe@abc.com",
 );
 setFields($customer, $customerFields);
 
@@ -25,5 +25,5 @@ if (!$addResponse->writeResponse->status->isSuccess) {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
 
-?> 
+?>
 
