@@ -11,8 +11,11 @@
         "ext-SimpleXML": "*"
     },
     "autoload": {
-        "classmap": [
-            "PHPToolkit/"
+        "psr-4": {
+            "NetSuite\\WebServices\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
         ]
     },
     "require-dev": {

@@ -16,6 +16,7 @@ $config = array(
     'password' => getenv('PASSWORD'),
     'role' => getenv('ROLE'),
     'account' => getenv('ACCOUNT'),
+    'logdir' => dirname(__FILE__) . '/../logs',
 );
 
 $service = new NetSuiteService($config);
