@@ -1,10 +1,17 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\GetSelectValueFieldDescription;
+use NetSuite\WebServices\GetSelectValueRequest;
+use NetSuite\WebServices\RecordRef;
+use NetSuite\WebServices\RecordType;
+use NetSuite\WebServices\SalesOrder;
+use NetSuite\WebServices\SalesOrderItem;
+use NetSuite\WebServices\SalesOrderItemList;
 
-$svr = new getSelectValueRequest();
+$svr = new GetSelectValueRequest();
 $svr->fieldDescription = new GetSelectValueFieldDescription();
 $svr->pageIndex = 1;
 /*$svr->fieldDescription->recordType = RecordType::salesOrder;
@@ -22,21 +29,23 @@ $priceFields = array(
             array(
                 'field' => 'item',
                 'sublist' => 'itemList',
-                'internalId' => '458',
+                'internalId' => '6',
             )
         )
     )
 );
 
-setFields($svr->fieldDescription, $priceFields);
+\NetSuite\WebServices\setFields($svr->fieldDescription, $priceFields);
 
 $gsv = $service->getSelectValue($svr);
 
 $id = null;
-foreach ($gsv->getSelectValueResult->baseRefList->baseRef as $pricelevel) {
-    if ($pricelevel->name == 'Custom') {
-        $id = $pricelevel->internalId;
-        break;
+if (isset($gsv->getSelectValueResult->baseRefList)) {
+    foreach ($gsv->getSelectValueResult->baseRefList->baseRef as $pricelevel) {
+        if ($pricelevel->name == 'Custom') {
+            $id = $pricelevel->internalId;
+            break;
+        }
     }
 }
 
@@ -66,10 +75,9 @@ $request->record = $so;
 $addResponse = $service->add($request);
 
 if (!$addResponse->writeResponse->status->isSuccess) {
-    echo "ADD ERROR";
+    echo "ADD ERROR\n";
+    var_dump($addResponse);
     exit();
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
-
-?>

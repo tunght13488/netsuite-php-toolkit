@@ -1,8 +1,10 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require_once __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\Customer;
+use NetSuite\WebServices\RecordRef;
 
 $customer = new Customer();
 $customer->lastName = "Doe";
@@ -24,6 +26,3 @@ if (!$addResponse->writeResponse->status->isSuccess) {
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
-
-?> 
-

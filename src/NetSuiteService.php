@@ -206,7 +206,7 @@ class NetSuiteService extends NSPHPClient
         "GetCustomizationIdResponse" => "GetCustomizationIdResponse",
         "InitializeResponse" => "InitializeResponse",
         "InitializeListResponse" => "InitializeListResponse",
-        "getSelectValueResponse" => "getSelectValueResponse",
+        "GetSelectValueResponse" => "GetSelectValueResponse",
         "GetItemAvailabilityResponse" => "GetItemAvailabilityResponse",
         "GetBudgetExchangeRateResponse" => "GetBudgetExchangeRateResponse",
         "GetConsolidatedExchangeRateResponse" => "GetConsolidatedExchangeRateResponse",
@@ -254,7 +254,7 @@ class NetSuiteService extends NSPHPClient
         "GetCustomizationIdRequest" => "GetCustomizationIdRequest",
         "InitializeRequest" => "InitializeRequest",
         "InitializeListRequest" => "InitializeListRequest",
-        "getSelectValueRequest" => "getSelectValueRequest",
+        "GetSelectValueRequest" => "GetSelectValueRequest",
         "GetItemAvailabilityRequest" => "GetItemAvailabilityRequest",
         "GetBudgetExchangeRateRequest" => "GetBudgetExchangeRateRequest",
         "GetConsolidatedExchangeRateRequest" => "GetConsolidatedExchangeRateRequest",
@@ -1874,12 +1874,12 @@ class NetSuiteService extends NSPHPClient
     /**
      * Service Call: getSelectValue
      * Parameter options:
-     * (getSelectValueRequest) parameters
+     * (GetSelectValueRequest) parameters
      *
-     * @return getSelectValueResponse
+     * @return GetSelectValueResponse
      * @throws Exception invalid function signature message
      */
-    public function getSelectValue(getSelectValueRequest $arg)
+    public function getSelectValue(GetSelectValueRequest $arg)
     {
         return $this->makeSoapCall("getSelectValue", $arg);
     }

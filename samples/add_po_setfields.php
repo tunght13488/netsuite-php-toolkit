@@ -1,8 +1,9 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\PurchaseOrder;
 
 $purchaseOrderFields = array(
     'entity' => array('internalId' => 1),
@@ -15,7 +16,7 @@ $purchaseOrderFields = array(
 );
 
 $po = new PurchaseOrder();
-setFields($po, $purchaseOrderFields);
+\NetSuite\WebServices\setFields($po, $purchaseOrderFields);
 
 $request = new AddRequest();
 $request->record = $po;
@@ -23,9 +24,8 @@ $request->record = $po;
 $addResponse = $service->add($request);
 
 if (!$addResponse->writeResponse->status->isSuccess) {
-    echo "ADD ERROR";
+    echo "ADD ERROR\n";
+    var_dump($addResponse);
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
-
-?>

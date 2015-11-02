@@ -2,7 +2,7 @@
 
 namespace NetSuite\WebServices;
 
-class getSelectValueRequest
+class GetSelectValueRequest
 {
     /**
      * @access public

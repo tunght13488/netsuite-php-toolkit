@@ -1,8 +1,11 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AsyncAddListRequest;
+use NetSuite\WebServices\CheckAsyncStatusRequest;
+use NetSuite\WebServices\Customer;
+use NetSuite\WebServices\GetAsyncResultRequest;
 
 // create Customer record
 $customer1 = new Customer();
@@ -10,46 +13,46 @@ $customer1 = new Customer();
 $name = 'customer_php_async_1';
 
 $customerFields1 = array(
-    'entityId' => $name,
+    //'entityId' => $name,
     'companyName' => $name,
     'externalId' => $name
 );
 
-setFields($customer1, $customerFields1);
+\NetSuite\WebServices\setFields($customer1, $customerFields1);
 
 $customer2 = new Customer();
 
 $name2 = 'customer_php_async_2';
 
 $customerFields2 = array(
-    'entityId' => $name2,
+    //'entityId' => $name2,
     'companyName' => $name2,
     'externalId' => $name2
 );
 
-setFields($customer2, $customerFields2);
+\NetSuite\WebServices\setFields($customer2, $customerFields2);
 
 // perform async add operation
-$asyncreq = new AsyncAddListRequest();
-$asyncreq->record = array($customer1, $customer2);
-$checkAsync = $service->asyncAddList($asyncreq);
+$asyncRequest = new AsyncAddListRequest();
+$asyncRequest->record = array($customer1, $customer2);
+$checkAsync = $service->asyncAddList($asyncRequest);
 
 // get job id
 $jobId = $checkAsync->asyncStatusResult->jobId;
-$checkasyncreq = new CheckAsyncStatusRequest();
-$checkasyncreq->jobId = $jobId;
+$checkAsyncRequest = new CheckAsyncStatusRequest();
+$checkAsyncRequest->jobId = $jobId;
 
 while ($checkAsync->asyncStatusResult->status == 'pending' || $checkAsync->asyncStatusResult->status == 'processing') {
+    echo $checkAsync->asyncStatusResult->status . "\n";
     sleep(10);
-    $checkAsync = $service->checkAsyncStatus($checkasyncreq);
+    $checkAsync = $service->checkAsyncStatus($checkAsyncRequest);
 }
 
 // once it is done processing, get the result
-$getasyncreq = new GetAsyncResultRequest();
-$getasyncreq->jobId = $jobId;
-$getasyncreq->pageIndex = "1";
+$getAsyncRequest = new GetAsyncResultRequest();
+$getAsyncRequest->jobId = $jobId;
+$getAsyncRequest->pageIndex = "1";
 
-$result = $service->getAsyncResult($getasyncreq);
-
-?>
+$result = $service->getAsyncResult($getAsyncRequest);
+var_dump($result->asyncResult);
 

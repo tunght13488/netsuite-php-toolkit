@@ -1,8 +1,14 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\GetRequest;
+use NetSuite\WebServices\PurchaseOrder;
+use NetSuite\WebServices\PurchaseOrderItem;
+use NetSuite\WebServices\PurchaseOrderItemList;
+use NetSuite\WebServices\RecordRef;
+use NetSuite\WebServices\UpdateRequest;
 
 $po = new PurchaseOrder();
 $po->entity = new RecordRef();
@@ -20,6 +26,7 @@ $request->record = $po;
 $addResponse = $service->add($request);
 if (!$addResponse->writeResponse->status->isSuccess) {
     echo "ADD ERROR";
+    var_dump($addResponse);
     exit();
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
@@ -62,5 +69,3 @@ if (!$updateResponse->writeResponse->status->isSuccess) {
 } else {
     echo "UPDATE SUCCESS, id " . $updateResponse->writeResponse->baseRef->internalId;
 }
-
-?>

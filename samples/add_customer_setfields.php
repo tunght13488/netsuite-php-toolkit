@@ -1,18 +1,19 @@
 <?php
 
-require_once '../PHPToolkit/NetSuiteService.php';
+require __DIR__ . '/autoload.php';
 
-$service = new NetSuiteService();
+use NetSuite\WebServices\AddRequest;
+use NetSuite\WebServices\Customer;
 
 $customer = new Customer();
 $customerFields = array(
     'firstName' => "Joe",
     'lastName' => "Doe",
-    'companyName' => "ABC company",
+    'companyName' => "setFields ABC company",
     'phone' => "123456789",
     'email' => "joe.doe@abc.com",
 );
-setFields($customer, $customerFields);
+\NetSuite\WebServices\setFields($customer, $customerFields);
 
 $request = new AddRequest();
 $request->record = $customer;
@@ -24,6 +25,4 @@ if (!$addResponse->writeResponse->status->isSuccess) {
 } else {
     echo "ADD SUCCESS, id " . $addResponse->writeResponse->baseRef->internalId;
 }
-
-?>
 

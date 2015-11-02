@@ -79,7 +79,8 @@ if (!function_exists('setFields')) {
                     trigger_error("Trying to assign an object into an array parameter \"" . $fldName . "\" of class \"" . $classname . "\", it will be omitted", E_USER_WARNING);
                     continue;
                 }
-                $obj = new $typesmap[$fldName]();
+                $objClassname = __NAMESPACE__ . '\\' . $typesmap[$fldName];
+                $obj = new $objClassname();
                 setFields($obj, $fldValue);
                 $object->$fldName = $obj;
             } elseif (is_array($fldValue) && !array_is_associative($fldValue)) {
@@ -91,7 +92,7 @@ if (!function_exists('setFields')) {
                 }
 
                 // get the base type  - the string is of type <type>[]
-                $basetype = substr($typesmap[$fldName], 0, -2);
+                $basetype = __NAMESPACE__ . '\\' . substr($typesmap[$fldName], 0, -2);
 
                 // example: 'item' => array($item1, $item2)
                 foreach ($fldValue as $item) {
