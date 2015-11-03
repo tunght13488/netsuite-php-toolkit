@@ -174,7 +174,12 @@ class NSPHPClient
             $this->clearHeader("passport");
         }
 
-        $response = $this->client->__soapCall($operation, array($parameter), null, $this->soapHeaders);
+        try {
+            $response = $this->client->__soapCall($operation, array($parameter), null, $this->soapHeaders);
+        } catch (\Exception $e) {
+            $this->log($operation);
+            throw $e;
+        }
 
         $this->log($operation);
 
